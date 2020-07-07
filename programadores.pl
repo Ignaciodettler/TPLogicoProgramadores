@@ -144,7 +144,7 @@ gradoSeniority(Persona,Grado):-
 esNinja(Persona):- 
     hizoTarea(Persona),
     soloHizoCorrectivas(Persona),
-    not(fueronSupervisadas(Persona)).
+    not(fueronSupervisadasEnLenguajeQueConoce(Persona)).
 
 soloHizoCorrectivas(Persona):-
     forall(tarea(Persona,Tarea),esCorrectiva(Tarea)).
@@ -155,7 +155,7 @@ hizoTarea(Persona):-
 
 esCorrectiva(correctiva(_,_)).
 
-fueronSupervisadas(Persona):-
+fueronSupervisadasEnLenguajeQueConoce(Persona):-
     hizoTarea(Persona),
     forall(tarea(_,supervisada(Persona,correctiva(_,Lenguaje))),programador(Persona,Lenguaje)).
 
